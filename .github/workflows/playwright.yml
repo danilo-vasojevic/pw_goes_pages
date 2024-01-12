@@ -30,7 +30,8 @@ jobs:
           path: playwright-report/
           retention-days: 1
   publish:
-    name: "Publish test results to GitHub Pages"
+    if: ${{ always() }}
+    name: "Publish to GH Pages"
     needs: [ test ] # publish runs after tests are done
     runs-on: ubuntu-latest
     steps:
