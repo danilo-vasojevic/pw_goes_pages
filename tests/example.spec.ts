@@ -1,5 +1,17 @@
 import { test, expect } from '@playwright/test'
 
+const startTime = Date.now()
+
+test('time is passing', async ({ page }) => {
+  test.info().annotations.push({
+    type: 'Start Time',
+    description: new Date(startTime).toString(),
+  })
+  await page.goto('/')
+  const now = Date.now()
+  expect(now).toBeGreaterThan(startTime)
+})
+
 test('has title', async ({ page }) => {
   await page.goto('/')
   await expect(page).toHaveTitle(/Playwright/)
