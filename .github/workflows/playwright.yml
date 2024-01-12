@@ -27,7 +27,7 @@ jobs:
         with:
           path: |
             ~/.cache/ms-playwright
-            key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
       - name: Install NPM dependencies
         run: npm ci
       - name: Install Playwright dependencies 1/2
