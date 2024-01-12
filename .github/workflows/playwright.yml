@@ -1,13 +1,16 @@
 name: Playwright Tests
 on:
   workflow_dispatch:
+env:
+  PLAYWRIGHT_VERSION:
+  AUTHOR_NAME: glemselens_elv
 jobs:
   test:
-    name: Run tests
+    name: Run Playwright tests
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v3
       - name: Setup node
         uses: actions/setup-node@v3
@@ -15,10 +18,24 @@ jobs:
           node-version: 18
           cache: npm
           cache-dependency-path: package-lock.json
-      - name: Install dependencies
+      - name: Get Playwright version
+        id: playwright-version
+        run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./package-lock.json').dependencies['@playwright/test'].version)")" >> $GITHUB_ENV
+      - name: Cache browsers
+        uses: actions/cache@v3
+        id: playwright-cache
+        with:
+          path: |
+            ~/.cache/ms-playwright
+            key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+      - name: Install NPM dependencies
         run: npm ci
-      - name: Install Playwright Browsers
+      - name: Install Playwright dependencies 1/2
         run: npx playwright install --with-deps
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+      - name: Install Playwright dependencies 2/2
+        run: npx playwright install-deps
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
       - name: Run Playwright tests
         run: npm run test
       - name: Upload report
@@ -28,6 +45,7 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 1
+
   publish:
     if: always()
     name: Push report to GH Pages
