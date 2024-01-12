@@ -33,7 +33,7 @@ jobs:
   publish:
     if: always()
     name: Push report to GH Pages
-    needs: [ test ] # publish runs after tests are done
+    needs: [test] # publish runs after tests are done
     runs-on: ubuntu-latest
     steps:
       - name: Download artifacts
@@ -45,4 +45,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ${{steps.download.outputs.download-path}}
-
