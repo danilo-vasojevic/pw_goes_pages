@@ -21,6 +21,8 @@ jobs:
         run: npm ci
       - name: Run Playwright tests
         run: npm run test
+        env:
+          HOME: /root
       - name: Upload report
         uses: actions/upload-artifact@v3
         if: always()
