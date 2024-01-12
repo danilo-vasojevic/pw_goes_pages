@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "playwright": "^1.40.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.1",
+    "@types/node": "^20.11.0",
+    "prettier": "3.2.1"
+  },
+  "scripts": {
+    "test": "npx playwright test",
+    "debug": "npx playwright test --debug --project=chromium",
+    "ui": "npx playwright test --ui",
+    "report": "npx playwright show-report"
+  }
+}
