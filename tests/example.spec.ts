@@ -10,3 +10,9 @@ test('get started link', async ({ page }) => {
   await page.getByRole('link', { name: 'Get started' }).click()
   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible()
 })
+
+test('this one fails always', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('link', { name: 'Get started' }).click()
+  await expect(page.getByRole('heading', { name: 'Installation' })).not.toBeVisible()
+})
