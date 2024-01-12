@@ -22,17 +22,17 @@ jobs:
         run: npx playwright install --with-deps
       
       - name: Run Playwright tests
-        run: npx playwright test
+        run: npm run test
       
       - uses: actions/upload-artifact@v3
-        if: always()
+        if: ${{ always() }}
         with:
           name: playwright-report
           path: playwright-report/
           retention-days: 1
   publish:
     if: ${{ always() }}
-    name: "Publish to GH Pages"
+    name: "Push report to GH Pages"
     needs: [ test ] # publish runs after tests are done
     runs-on: ubuntu-latest
     steps:
