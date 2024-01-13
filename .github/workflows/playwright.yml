@@ -10,7 +10,6 @@ jobs:
       matrix:
         shard: ['1/4', 2/4, 3/4, 4/4]
     name: Run Playwright tests
-    timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.40.0-jammy
@@ -74,7 +73,6 @@ jobs:
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v3
-        id: download
       - name: Publish to GH Pages
         uses: peaceiris/actions-gh-pages@v3.7.3
         if: always()
