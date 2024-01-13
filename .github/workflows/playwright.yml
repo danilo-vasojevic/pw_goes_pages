@@ -1,6 +1,8 @@
 name: Playwright Tests
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
 jobs:
   test:
     name: Run Playwright tests
@@ -33,7 +35,7 @@ jobs:
   publish:
     if: always()
     name: Push report to GH Pages
-    needs: [test] # publish runs after tests are done
+    needs: [test] # publish results after tests are done
     runs-on: ubuntu-latest
     steps:
       - name: Download artifacts
