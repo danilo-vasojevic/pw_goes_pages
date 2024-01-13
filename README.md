@@ -6,4 +6,6 @@
 
 [![>>> - Latest report](https://img.shields.io/badge/>>>-Latest_report-2ea44f)](https://danilo-vasojevic.github.io/pw_goes_pages/)
 
-Simple repo containing Playwright + Typescript UI tests and GH Actions workflow which publishes Playwright's HTML report to GitHub Pages
+Simple repo containing Playwright + Typescript UI tests and GH Actions workflow which publishes Playwright's HTML report to GitHub Pages.
+
+I've also added sharding so that execution is split between 4 shards. Once they are finished, reports are merged together and published to GH Pagess as before.
