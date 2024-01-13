@@ -23,7 +23,7 @@ test('get started link', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible()
 })
 
-test('this one fails first time only', async ({ page, browserName }, testInfo) => {
+test('this one is flaky', async ({ page, browserName }, testInfo) => {
   test.skip(browserName === 'firefox', 'Do not run on FF')
   test.skip(browserName === 'webkit', 'Do not run on WebKit')
   await page.goto('/')
