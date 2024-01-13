@@ -23,11 +23,10 @@ test('get started link', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible()
 })
 
-test('this one fails always', async ({ page, browserName }) => {
+test('this one fails first time only', async ({ page, browserName }, testInfo) => {
   test.skip(browserName === 'firefox', 'Do not run on FF')
   test.skip(browserName === 'webkit', 'Do not run on WebKit')
-
   await page.goto('/')
   await page.getByRole('link', { name: 'Get started' }).click()
-  expect(true).toEqual(false)
+  if (!testInfo.retry) expect(true).toEqual(false)
 })

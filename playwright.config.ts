@@ -23,15 +23,16 @@ export default defineConfig({
   outputDir: 'output/',
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: process.env.CI
-    ? [['list'], ['html', { outputFolder: `playwright-report`, open: 'never' }]]
-    : [['list'], ['html', { outputFolder: `playwright-report`, open: 'on-failure' }]],
+    ? [['list'], ['blob']]
+    : [['list'], ['html', { open: 'on-failure' }]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'https://playwright.dev',
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    /* Collect trace when retrying the failed test */
     trace: 'on-first-retry',
+    /* Record video on first retry of the test */
     video: 'on-first-retry',
   },
 
