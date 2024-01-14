@@ -1,7 +1,9 @@
 ## Playwright goes Pages
-
-[![Playwright Tests](https://github.com/danilo-vasojevic/pw_goes_pages/actions/workflows/playwright.yml/badge.svg?branch=main)](https://github.com/danilo-vasojevic/pw_goes_pages/actions/workflows/playwright.yml)
+[![UI Tests split by feature](https://github.com/danilo-vasojevic/pw_goes_pages/actions/workflows/feature_workflow.yml/badge.svg)](https://github.com/danilo-vasojevic/pw_goes_pages/actions/workflows/feature_workflow.yml)
+[![UI Tests split by project](https://github.com/danilo-vasojevic/pw_goes_pages/actions/workflows/project_workflow.yml/badge.svg)](https://github.com/danilo-vasojevic/pw_goes_pages/actions/workflows/project_workflow.yml)
+[![UI Tests split by sharding](https://github.com/danilo-vasojevic/pw_goes_pages/actions/workflows/shard_workflow.yml/badge.svg)](https://github.com/danilo-vasojevic/pw_goes_pages/actions/workflows/shard_workflow.yml)
 [![>>> - Latest report](https://img.shields.io/badge/>>>-Latest_report-2ea44f)](https://danilo-vasojevic.github.io/pw_goes_pages/)
+
 [![pages-build-deployment](https://github.com/danilo-vasojevic/pw_goes_pages/actions/workflows/pages/pages-build-deployment/badge.svg?branch=gh-pages)](https://github.com/danilo-vasojevic/pw_goes_pages/actions/workflows/pages/pages-build-deployment)
 
 ### Framework setup
