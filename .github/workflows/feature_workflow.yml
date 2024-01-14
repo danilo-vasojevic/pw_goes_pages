@@ -1,14 +1,12 @@
-name: Playwright Tests
+name: UI Tests split by feature
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
 jobs:
   test:
     strategy:
       fail-fast: false
       matrix:
-        project: [chromium, firefox, webkit]
+        feature: ['@sample', '@homepage']
     name: Run UI tests
     runs-on: ubuntu-latest
     container:
@@ -24,14 +22,14 @@ jobs:
           cache-dependency-path: package-lock.json
       - name: Install NPM dependencies
         run: npm ci
-      - name: Run UI tests for ${{matrix.project}}
-        run: npx playwright test --project=${{matrix.project}}
+      - name: Run UI tests for ${{matrix.feature}}
+        run: npx playwright test --grep ${{matrix.feature}}
         env:
           HOME: /root # Needed to run firefox tests
       - name: Rename blob report
         id: rename
         if: always()
-        run: mv blob-report/report.zip blob-report/report-${{ matrix.project }}.zip
+        run: mv blob-report/report.zip blob-report/report-${{ matrix.feature }}.zip
       - name: Upload blob report
         if: always()
         uses: actions/upload-artifact@v3
