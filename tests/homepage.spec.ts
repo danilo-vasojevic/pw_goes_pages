@@ -1,16 +1,27 @@
 import { test, expect } from '../fixtures/fixtures'
 
 test.describe('@homepage', () => {
-  test('has title', async ({ pg }) => {
-    await expect(pg).toHaveTitle(/Playwright/)
+  test('has title', async ({ po }) => {
+    await po.home.navigate()
+    await po.home.verifyUrl()
   })
 
-  test('logo looks okay', async ({ pg }) => {
-    await expect(pg.getByAltText('Playwright logo')).toHaveScreenshot('logo.png')
+  test('get started link works', async ({ po }) => {
+    await po.home.navigate()
+    await po.home.getStarted.click()
+    await expect(po.page).toHaveURL('/docs/intro')
   })
 
-  test('get started link works', async ({ pg }) => {
-    await pg.getByRole('link', { name: 'Get started' }).click()
-    await expect(pg.getByRole('heading', { name: 'Installation' })).toBeVisible()
+  test('paragraph titles are correct', async ({ po }) => {
+    await po.home.navigate()
+    await po.home.verifyParagraphTitles({
+      titles: [
+        'Any browser • Any platform • One API',
+        'Resilient • No flaky tests',
+        'No trade-offs • No limits',
+        'Full isolation • Fast execution',
+        'Powerful Tooling',
+      ],
+    })
   })
 })

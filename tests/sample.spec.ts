@@ -8,11 +8,7 @@ test.describe('@samples', () => {
     expect(Date.now()).toBeGreaterThan(startTime)
   })
 
-  test('this one is skipped', async ({ info }) => {
-    info.skip('This test is skipped because I said so.')
-  })
-
-  test('this one fails first time only', async ({ browserName, info }) => {
+  test('this one fails first time only', async ({ info }) => {
     await test.step('Skip test if browser is Firefox or WebKit', async () => {
       info.skipIf(info.testInfo.project.name === 'firefox', 'Do not run on Firefox')
       info.skipIf(info.testInfo.project.name === 'webkit', 'Do not run on WebKit')

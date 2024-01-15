@@ -1,13 +1,13 @@
 import { defineConfig, devices } from '@playwright/test'
 import * as dotenv from 'dotenv'
 
-export const seconds = 1000
-const percent = 0.01
-process.env.ENV = process.env.ENV ? process.env.ENV : 'default' // Which .env file to read
-
 // Add environment variables from file
 // See https://github.com/motdotla/dotenv
-dotenv.config({ path: `config/${process.env.ENV}.env` })
+process.env.ENV = process.env.ENV ? process.env.ENV : 'default' // Which .env file to read
+dotenv.config({ path: `config/${process.env.ENV}.env` }) // Read .env
+export const BASE_URL = process.env.BASE_URL
+export const seconds = 1000
+export const percent = 0.01
 
 // Configuration for entire Playwright project
 // See https://playwright.dev/docs/test-configuration
@@ -27,9 +27,9 @@ export default defineConfig({
   // See https://playwright.dev/docs/api/class-testoptions
   use: {
     viewport: { width: 1920, height: 1080 },
-    baseURL: `${process.env.BASE_URL}`, // Base URL to use in actions like `await page.goto('/')`
+    baseURL: `${BASE_URL}`, // Base URL to use in actions like `await page.goto('/')`
     headless: true, // Run tests in headless mode
-    actionTimeout: 8 * seconds, // No action can take longer than 8 seconds
+    actionTimeout: 5 * seconds, // No action can take longer than 8 seconds
     trace: 'on-first-retry', // Collect trace when retrying the failed test
     video: 'on-first-retry', // Collect video when retrying the failed test
   },
@@ -46,19 +46,8 @@ export default defineConfig({
   // Configure projects for major browsers
   // See https://playwright.dev/docs/api/class-testproject
   projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
-
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+    { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
+    { name: 'webkit', use: { ...devices['Desktop Safari'] } },
   ],
 })
