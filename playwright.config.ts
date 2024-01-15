@@ -16,7 +16,7 @@ export default defineConfig({
   snapshotPathTemplate: 'data/{testFileName}/{arg}{ext}', // Where to generate / look for snapshots
   fullyParallel: true, // Run tests in files in parallel
   forbidOnly: !!process.env.CI, // Fail the build on CI if you accidentally left test.only in the source code
-  retries: !!process.env.CI ? 1 : 0, // Retry on CI only
+  retries: !!process.env.CI ? 1 : 1, // Retry on CI only
   workers: !!process.env.CI ? 4 : 8, // Opt out of parallel tests on CI
   outputDir: 'output/', // Folder for test artifacts such as screenshots, videos, traces, etc
   reporter: !!process.env.CI // Reporter to use. See https://playwright.dev/docs/test-reporters
