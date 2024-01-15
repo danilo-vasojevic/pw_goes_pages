@@ -16,6 +16,6 @@
 - [x] ~~Add demo fixtures~~
 - [x] ~~Added config files & dotenv~~
 - [x] ~~Make sharding work based on any criteria (project etc.)~~
-- [x] Add simple page object
+- [x] ~~Add simple page object~~
 - [ ] Enable running multiple contexts in parallel
 - [ ] Write proper README.md file
