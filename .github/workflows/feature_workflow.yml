@@ -6,7 +6,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        feature: ['@sample', '@homepage']
+        feature: ['@sample', '@homepage', '@navigation']
     name: Run UI tests
     runs-on: ubuntu-latest
     container:
